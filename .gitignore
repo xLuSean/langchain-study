@@ -7,5 +7,5 @@ user_data/
 *.pkl
 .env
 .DS_Store
-langchain_docs/ParentDocumentRetriever/cache
-langchain_docs/ParentDocumentRetriever/db
+cache/
+chroma_db/

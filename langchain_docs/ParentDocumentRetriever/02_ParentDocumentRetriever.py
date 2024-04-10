@@ -1,3 +1,5 @@
+# basic usage of ParentDocumentRetriever, using parent splitter.
+# use InMemoryStore
 from langchain.retrievers import ParentDocumentRetriever
 from langchain.storage import InMemoryStore
 from langchain_community.document_loaders import TextLoader

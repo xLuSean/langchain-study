@@ -1,3 +1,5 @@
+# basic usage of ParentDocumentRetriever, using parent splitter.
+# use LocalFileStore
 from langchain.retrievers import ParentDocumentRetriever
 from langchain.storage import InMemoryStore
 from langchain_community.document_loaders import TextLoader
@@ -33,7 +35,7 @@ parent_splitter = RecursiveCharacterTextSplitter(chunk_size=2000)
 child_splitter = RecursiveCharacterTextSplitter(chunk_size=400)
 # The vectorstore to use to index the child chunks
 vectorstore = Chroma(
-    collection_name="split_parents", embedding_function=OpenAIEmbeddings(), persist_directory="./db"
+    collection_name="split_parents", embedding_function=OpenAIEmbeddings(), persist_directory="./chroma_db"
 )
 # The storage layer for the parent documents
 # store = InMemoryStore()
@@ -46,7 +48,7 @@ retriever = ParentDocumentRetriever(
     parent_splitter=parent_splitter,
 )
 
-# retriever.add_documents(docs)
+retriever.add_documents(docs)
 
 # We can see that there are much more than two documents now - these are the larger chunks.
 res = len(list(store.yield_keys()))
