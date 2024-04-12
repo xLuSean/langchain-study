@@ -1,3 +1,5 @@
+# https://blog.csdn.net/u013066244/article/details/132014791
+
 from langchain.schema import Document
 from langchain.vectorstores.faiss import FAISS
 from langchain_community.embeddings.sentence_transformer import SentenceTransformerEmbeddings
