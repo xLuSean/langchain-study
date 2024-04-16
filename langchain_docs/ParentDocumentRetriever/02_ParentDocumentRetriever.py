@@ -25,10 +25,10 @@ for loader in loaders:
 # Retrieving larger chunks
 # Sometimes, the full documents can be too big to want to retrieve them as is. In that case, what we really want to do is to first split the raw documents into larger chunks, and then split it into smaller chunks. We then index the smaller chunks, but on retrieval we retrieve the larger chunks (but still not the full documents).
 # This text splitter is used to create the parent documents
-parent_splitter = RecursiveCharacterTextSplitter(chunk_size=2000)
+parent_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=500)
 # This text splitter is used to create the child documents
 # It should create documents smaller than the parent
-child_splitter = RecursiveCharacterTextSplitter(chunk_size=400)
+child_splitter = RecursiveCharacterTextSplitter(chunk_size=400, chunk_overlap=100)
 # The vectorstore to use to index the child chunks
 vectorstore = Chroma(
     collection_name="split_parents", embedding_function=OpenAIEmbeddings()

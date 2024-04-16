@@ -12,6 +12,8 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores.faiss import FAISS
 from langchain_community.document_loaders import TextLoader
 
+# TODO: 還沒改成中文
+
 loader = TextLoader("../../text_files/state_of_the_union.txt")
 documents = loader.load()
 text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
