@@ -2,8 +2,11 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-from langchain.memory import ConversationSummaryMemory, ChatMessageHistory
-from langchain_openai import OpenAI
+from langchain.memory import ConversationSummaryMemory
+from langchain_community.chat_message_histories.in_memory import ChatMessageHistory
+# from langchain_openai import OpenAI
+from langchain_openai import ChatOpenAI
+
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # memory = ConversationSummaryMemory(llm=OpenAI(temperature=0))
@@ -41,7 +44,7 @@ history.add_ai_message("hi there!")
 # )
 
 memory = ConversationSummaryMemory(
-    llm=OpenAI(temperature=0),
+    llm=ChatOpenAI(temperature=0),
     # buffer="The human asks what the AI thinks of artificial intelligence. The AI thinks artificial intelligence is a force for good because it will help humans reach their full potential.",
     chat_memory=history,
     return_messages=True
@@ -51,5 +54,6 @@ memory = ConversationSummaryMemory(
 previous_summary = "The human asks what the AI thinks of artificial intelligence. The AI thinks artificial intelligence is a force for good because it will help humans reach their full potential"
 
 messages = memory.chat_memory.messages
+print(messages)
 res = memory.predict_new_summary(messages, previous_summary)
 print(res)

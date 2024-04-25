@@ -30,10 +30,15 @@ retriever_from_llm = MultiQueryRetriever.from_llm(
 
 #>>> Set logging for the queries
 import logging
-
 logging.basicConfig()
 logging.getLogger("langchain.retrievers.multi_query").setLevel(logging.INFO)
 
 unique_docs = retriever_from_llm.get_relevant_documents(query=question)
-# len(unique_docs)
-print(f"#####\n {unique_docs}")
+# print(len(unique_docs))
+# print(f"#####\n {unique_docs}")
+# for doc in unique_docs:
+#     print(doc.page_content)
+#     print("#####")
+
+documents = "###".join(doc.page_content for doc in unique_docs)
+print(documents)

@@ -1,3 +1,4 @@
+# https://arxiv.org/abs/2307.03172
 from langchain.chains import LLMChain, StuffDocumentsChain
 from langchain.prompts import PromptTemplate
 from langchain_community.document_transformers.long_context_reorder import (

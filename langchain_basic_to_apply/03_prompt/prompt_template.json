@@ -1,0 +1,16 @@
+{
+    "name": null,
+    "input_variables": [
+        "adjective",
+        "content"
+    ],
+    "input_types": {},
+    "output_parser": null,
+    "partial_variables": {},
+    "metadata": null,
+    "tags": null,
+    "template": "\u7ed9\u6211\u8bb2\u4e00\u4e2a{adjective}\u7684\u5173\u4e8e{content}\u7684\u7b11\u8bdd\u3002",
+    "template_format": "f-string",
+    "validate_template": false,
+    "_type": "prompt"
+}
