@@ -36,9 +36,10 @@ logging.getLogger("langchain.retrievers.multi_query").setLevel(logging.INFO)
 unique_docs = retriever_from_llm.get_relevant_documents(query=question)
 # print(len(unique_docs))
 # print(f"#####\n {unique_docs}")
-# for doc in unique_docs:
-#     print(doc.page_content)
-#     print("#####")
+for i in range(len(unique_docs)):
+    print(f"##### {i}")
+    print(unique_docs[i].page_content)
+    print("#####")
 
-documents = "###".join(doc.page_content for doc in unique_docs)
-print(documents)
+# documents = "###".join(doc.page_content for doc in unique_docs)
+# print(documents)
