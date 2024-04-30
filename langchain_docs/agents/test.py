@@ -1,16 +1,24 @@
-# Example list of dictionaries, each representing some kind of record with a chat history
-records = [
-    {"chat_history": ["Hi", "Hello", "How are you?"], "user_id": 1},
-    {"chat_history": ["Hey", "I'm good, thanks!", "And you?"], "user_id": 2}
-]
+from langchain_anthropic import ChatAnthropic
+from langchain_core.prompts import ChatPromptTemplate
+import os
+from dotenv import load_dotenv
+load_dotenv(dotenv_path="/Users/sean/Learn/AI/langchain/.env")
 
-# A dictionary with lambda functions as values for different operations
-operations = {
-    "chat_history": lambda x: x["chat_history"],
-    # Other operations could be defined here as well
-}
+chat = ChatAnthropic(temperature=0, model_name="claude-3-haiku-20240307")
+print(os.getenv("ANTHROPIC_API_KEY"))
+print(os.getenv("OPENAI_API_KEY"))
 
-# Using the lambda function to extract chat histories from each record
-chat_histories = [operations["chat_history"](record) for record in records]
+# system = (
+#     "You are a helpful assistant that translates {input_language} to {output_language}."
+# )
+# human = "{text}"
+# prompt = ChatPromptTemplate.from_messages([("system", system), ("human", human)])
 
-print(chat_histories)
+# chain = prompt | chat
+# chain.invoke(
+#     {
+#         "input_language": "English",
+#         "output_language": "Korean",
+#         "text": "I love Python",
+#     }
+# )
