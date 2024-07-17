@@ -9,7 +9,7 @@ SERPAPI_API_KEY = os.getenv("SERPAPI_API_KEY")
 
 # === key setting ==============================================================
 
-from langchain.agents import load_tools,initialize_agent,AgentType, Tool
+from langchain.agents import load_tools, initialize_agent, AgentType, Tool
 from langchain_openai import OpenAI
 from langchain_community.utilities.serpapi import SerpAPIWrapper
 
@@ -48,6 +48,9 @@ agent = initialize_agent(tool, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
 
 
 # 运行 agent
-query = "What's the date today? What great events have taken place today in history?"
+# query = "What's the date today? What great events have taken place today in history?"
+query = "台灣貓糧推薦排行榜，用中文回覆"
 # query = "我的10歲狗狗，早上吃乾糧的時候吐了怎麼辦？"
-agent.invoke(query)
+res = agent.invoke(query)
+
+print(res)

@@ -1,3 +1,5 @@
+# Ref :https://medium.com/@bpothier/generating-structured-data-from-an-image-with-gpt-vision-and-langchain-34aaf3dcb215
+
 import base64
 from langchain.chains.transform import TransformChain
 
@@ -21,6 +23,7 @@ load_image_chain = TransformChain(
 # >>> Defining the Output Structure
 from langchain_core.pydantic_v1 import BaseModel, Field
 from langchain_core.output_parsers import JsonOutputParser
+
 class ImageInformation(BaseModel):
     """Information about an image."""
     image_description: str = Field(description="a short description of the image")
@@ -28,8 +31,6 @@ class ImageInformation(BaseModel):
     main_objects: list[str] = Field(description="list of the main objects on the picture")
 
 parser = JsonOutputParser(pydantic_object=ImageInformation)
-
-
 
 # >>> Setting up the Image Model
 # from langchain.chains import TransformChain
