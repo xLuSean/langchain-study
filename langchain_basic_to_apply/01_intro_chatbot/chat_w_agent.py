@@ -1,7 +1,8 @@
 from dotenv import load_dotenv
 load_dotenv()
 
-from langchain.agents import load_tools
+# from langchain.agents import load_tools
+from langchain_community.agent_toolkits.load_tools import load_tools
 from langchain.agents import initialize_agent
 from langchain.agents import AgentType
 from langchain_openai import ChatOpenAI
@@ -9,7 +10,8 @@ from langchain_openai import OpenAI
 
 
 # 首先，我们加载我们要用来控制代理的语言模型
-chat = ChatOpenAI(temperature=0)
+# chat = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
+chat = ChatOpenAI(model="gpt-4o-mini", temperature=0)
  
 # 其次，我们加载一些要使用的工具。请注意，“llm-math”工具使用LLM，所以我们需要传递它
 llm = OpenAI(temperature=0)
@@ -20,7 +22,11 @@ tools = load_tools(["serpapi", "llm-math"], llm=llm) # pip install numexpr
 agent = initialize_agent(tools, chat, agent=AgentType.CHAT_ZERO_SHOT_REACT_DESCRIPTION, verbose=True)
  
 # 测试代理
-res = agent.invoke({"Who is Olivia Wilde's boyfriend? What is his current age raised to the 0.23 power?"})
+# res = agent.invoke({"Who is Olivia Wilde's boyfriend? What is his current age raised to the 0.23 power?"})
 # res = agent.invoke("Who is Olivia Wilde's boyfriend? What is his current age raised to the 0.23 power?")
+
+# res = agent.invoke({"Who is President of Taiwan? What is his/her current age raised to the 0.23 power?"})
+# res = agent.invoke("台灣最熱銷的貓糧前三名") # cant get right answer 20240724
+res = agent.invoke("Most popular cat food in Taiwan")
 
 print(res)

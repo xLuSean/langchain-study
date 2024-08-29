@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 from langchain.embeddings import CacheBackedEmbeddings
 from langchain.storage import LocalFileStore
 from langchain_community.document_loaders import TextLoader
