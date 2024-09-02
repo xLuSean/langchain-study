@@ -1,3 +1,8 @@
+
+#
+.vscode/
+
+###################
 __pycache__/
 prompts/__pycache__/
 vectorstore/db_faiss/*
