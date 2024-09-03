@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #todo-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h1 {
+            text-align: center;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+        button.edit {
+            background-color: #ffc107;
+        }
+        button.delete {
+            background-color: #dc3545;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="todo-container">
+        <h1>To-Do List</h1>
+        <input type="text" id="new-task" placeholder="新增任務">
+        <button onclick="addTask()">新增</button>
+        <ul id="task-list"></ul>
+    </div>
+
+    <script>
+        function addTask() {
+            var taskInput = document.getElementById('new-task');
+            var taskText = taskInput.value.trim();
+
+            if (taskText === '') {
+                alert('請輸入任務內容');
+                return;
+            }
+
+            var li = document.createElement('li');
+            var span = document.createElement('span');
+            span.textContent = taskText;
+            li.appendChild(span);
+
+            var editButton = document.createElement('button');
+            editButton.textContent = '修改';
+            editButton.className = 'edit';
+            editButton.onclick = function() {
+                var newTaskText = prompt('修改任務', span.textContent);
+                if (newTaskText !== null) {
+                    span.textContent = newTaskText;
+                }
+            };
+            li.appendChild(editButton);
+
+            var deleteButton = document.createElement('button');
+            deleteButton.textContent = '刪除';
+            deleteButton.className = 'delete';
+            deleteButton.onclick = function() {
+                li.remove();
+            };
+            li.appendChild(deleteButton);
+
+            document.getElementById('task-list').appendChild(li);
+            taskInput.value = '';
+        }
+    </script>
+</body>
+</html>
