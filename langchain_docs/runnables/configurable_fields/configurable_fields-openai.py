@@ -19,7 +19,8 @@ model = ChatOpenAI(temperature=0).configurable_fields(
 # print(res)
 
 res = model.with_config(configurable={
-    "model_name":"gpt-4-turbo-2024-04-09",
+    # "model_name":"gpt-4-turbo-2024-04-09",
+    "model_name":"gpt-4o-mini",
     "llm_temperature": 0.9}
     ).invoke("pick a random number between 0 and 1024")
 print(res)

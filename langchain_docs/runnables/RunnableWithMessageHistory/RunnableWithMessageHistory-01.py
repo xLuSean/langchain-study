@@ -18,7 +18,7 @@ def get_chat_history(session_id: str) -> BaseChatMessageHistory:
     return store[session_id]
 
 
-llm = Ollama(model='llama2')
+llm = Ollama(model='llama3.1')
 
 prompt = ChatPromptTemplate.from_messages([
     ('system', 'You are a good assistant.'),
@@ -37,7 +37,7 @@ with_message_history = RunnableWithMessageHistory(
 
 session_id = 'chat001'
 input_text = input('>>> ')
-while input_text.lower() != 'bye':
+while input_text.lower() not in ['exit', 'quit', 'q', 'bye']:
     if input_text:
         response = with_message_history.with_config(
             configurable={'session_id': session_id}
