@@ -180,4 +180,4 @@ cache/
 chroma_db/
 .DS_Store
 .vscode/
-.db
+*.db
